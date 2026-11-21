@@ -1,0 +1,24 @@
+<ul class="social" [class.with-labels]="labels()">
+  @for (s of items; track s.id) {
+    <li>
+      <a
+        [href]="s.url"
+        target="_blank"
+        rel="noopener noreferrer me"
+        class="s-link"
+        [attr.aria-label]="s.label"
+        [attr.title]="s.label"
+      >
+        <span class="s-icon"><fa-icon [icon]="s.icon" /></span>
+        @if (labels()) {
+          <span class="s-text">
+            <span class="s-name">{{ s.label }}</span>
+            @if (s.handle) {
+              <span class="s-handle" dir="ltr">{{ s.handle }}</span>
+            }
+          </span>
+        }
+      </a>
+    </li>
+  }
+</ul>

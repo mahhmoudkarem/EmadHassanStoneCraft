@@ -1,0 +1,91 @@
+<app-page-hero
+  image="/images/projects/7.jpg"
+  [eyebrow]="lang.l(ui.nav.contact)"
+  [title]="lang.l(ui.contact.pageTitle)"
+  [intro]="lang.l(ui.contact.pageIntro)"
+  [crumbs]="[{ label: lang.l(ui.nav.contact) }]"
+/>
+
+<section class="ct">
+  <div class="container-x grid">
+    <aside class="info" appReveal>
+      <h2>{{ lang.l(ui.contact.infoTitle) }}</h2>
+
+      <div class="blk">
+        <h3>{{ lang.l(ui.contact.phones) }}</h3>
+        <ul>
+          @for (p of site.phones; track p.tel) {
+            <li>
+              <a [href]="'tel:' + p.tel"><fa-icon [icon]="faPhone" /><span dir="ltr">{{ p.display }}</span></a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div class="blk">
+        <h3>{{ lang.l(ui.contact.email) }}</h3>
+        <ul>
+          <li>
+            <a [href]="'mailto:' + site.email" class="mail"><fa-icon [icon]="faEnvelope" /><span dir="ltr">{{ site.email }}</span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="blk">
+        <h3>{{ lang.l(ui.contact.address) }}</h3>
+        <p><fa-icon [icon]="faLocationDot" class="gi" /> {{ lang.l(ui.contact.addressValue) }}</p>
+        <a [href]="site.mapsUrl" target="_blank" rel="noopener noreferrer" class="maplink">{{ lang.l(ui.contact.openMap) }}</a>
+      </div>
+
+      <div class="blk">
+        <h3>{{ lang.l(ui.contact.social) }}</h3>
+        <p class="soc-text">{{ lang.l(ui.contact.socialText) }}</p>
+        <app-social-links tone="dark" [labels]="true" />
+      </div>
+    </aside>
+
+    <div id="quote" class="formbox" appReveal [revealDelay]="100">
+      <h2>{{ lang.l(ui.contact.formTitle) }}</h2>
+      <p class="ft">{{ lang.l(ui.contact.formText) }}</p>
+
+      <form (ngSubmit)="submit()" novalidate>
+        <div class="f">
+          <label for="name">{{ lang.l(ui.contact.name) }}</label>
+          <input id="name" name="name" [(ngModel)]="name" autocomplete="name" [attr.aria-invalid]="submitted() && nameInvalid" />
+          @if (submitted() && nameInvalid) { <small class="err" role="alert">{{ lang.l(ui.contact.errName) }}</small> }
+        </div>
+
+        <div class="f">
+          <label for="phone">{{ lang.l(ui.contact.phone) }}</label>
+          <input id="phone" name="phone" type="tel" dir="ltr" [(ngModel)]="phone" autocomplete="tel" [class.rtl-ph]="lang.isArabic()" [attr.aria-invalid]="submitted() && phoneInvalid" />
+          @if (submitted() && phoneInvalid) { <small class="err" role="alert">{{ lang.l(ui.contact.errPhone) }}</small> }
+        </div>
+
+        <div class="f">
+          <label for="interest">{{ lang.l(ui.contact.interest) }}</label>
+          <select id="interest" name="interest" [(ngModel)]="interest">
+            <option value="">{{ lang.l(ui.contact.other) }}</option>
+            @for (p of products; track p.id) {
+              <option [value]="lang.l(p.name)">{{ lang.l(p.name) }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="f">
+          <label for="message">{{ lang.l(ui.contact.message) }}</label>
+          <textarea id="message" name="message" rows="5" [(ngModel)]="message" [placeholder]="lang.l(ui.contact.messagePh)" [attr.aria-invalid]="submitted() && messageInvalid"></textarea>
+          @if (submitted() && messageInvalid) { <small class="err" role="alert">{{ lang.l(ui.contact.errMessage) }}</small> }
+        </div>
+
+        <button type="submit" class="btn btn-dark">
+          <fa-icon [icon]="faWhatsapp" />
+          {{ lang.l(ui.contact.send) }}
+        </button>
+
+        @if (sent()) {
+          <p class="ok" role="status">{{ lang.l(ui.contact.success) }}</p>
+        }
+      </form>
+    </div>
+  </div>
+</section>

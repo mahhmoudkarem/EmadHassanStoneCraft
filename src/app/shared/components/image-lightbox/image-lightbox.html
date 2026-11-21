@@ -1,0 +1,22 @@
+<div class="lb" role="dialog" aria-modal="true" [attr.aria-label]="current().alt" (click)="closed.emit()">
+  <button type="button" class="lb-close" (click)="closed.emit()" [attr.aria-label]="lang.l(ui.common.close)">
+    <fa-icon [icon]="faXmark" />
+  </button>
+
+  @if (items().length > 1) {
+    <button type="button" class="lb-nav prev" (click)="$event.stopPropagation(); go(-1)" [attr.aria-label]="lang.l(ui.common.previous)">
+      <fa-icon [icon]="prevIcon()" />
+    </button>
+    <button type="button" class="lb-nav next" (click)="$event.stopPropagation(); go(1)" [attr.aria-label]="lang.l(ui.common.next)">
+      <fa-icon [icon]="nextIcon()" />
+    </button>
+  }
+
+  <figure class="lb-fig" (click)="$event.stopPropagation()">
+    <img [src]="current().src" [alt]="current().alt" />
+    @if (current().caption) {
+      <figcaption>{{ current().caption }}</figcaption>
+    }
+    <span class="lb-count" dir="ltr">{{ index() + 1 }} / {{ items().length }}</span>
+  </figure>
+</div>

@@ -1,0 +1,53 @@
+<app-page-hero
+  image="/images/factory/3.jpg"
+  [eyebrow]="lang.l(ui.factory.eyebrow)"
+  [title]="lang.l(ui.factory.pageTitle)"
+  [intro]="lang.l(ui.factory.text)"
+  [crumbs]="[{ label: lang.l(ui.footer.factory) }]"
+/>
+
+<section class="mach">
+  <div class="container-x cols">
+    <article class="m" appReveal>
+      <div class="mi" appReveal><img [src]="photos[2]" [alt]="lang.l(ui.factory.alts[2])" width="1280" height="960" /></div>
+      <h2>{{ lang.l(ui.factory.profileTitle) }}</h2>
+      <p>{{ lang.l(ui.factory.profileText) }}</p>
+    </article>
+    <article class="m" appReveal [revealDelay]="120">
+      <div class="mi" appReveal [revealDelay]="120"><img [src]="photos[0]" [alt]="lang.l(ui.factory.alts[0])" width="1280" height="960" /></div>
+      <h2>{{ lang.l(ui.factory.cuttingTitle) }}</h2>
+      <p>{{ lang.l(ui.factory.cuttingText) }}</p>
+    </article>
+  </div>
+</section>
+
+<section class="work">
+  <div class="container-x">
+    <h2 class="sec-title" appReveal>{{ lang.l(ui.factory.galleryTitle) }}</h2>
+    <p class="sec-lead mt-4" appReveal [revealDelay]="80">{{ lang.l(ui.factory.galleryText) }}</p>
+    <div class="g">
+      @for (src of photos; track src; let i = $index) {
+        <button type="button" class="gi gi{{ i }}" (click)="start.set(i)" appReveal [revealDelay]="($index % 3) * 70" [attr.aria-label]="lang.l(ui.common.zoom)">
+          <img [src]="src" [alt]="lang.l(ui.factory.alts[i])" loading="lazy" width="1280" height="960" />
+        </button>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="why grain">
+  <div class="container-x">
+    <h2 class="sec-title" appReveal>{{ lang.l(ui.about.whyTitle) }}</h2>
+    <ul class="wl">
+      @for (w of why; track w.en) {
+        <li appReveal [revealDelay]="($index % 3) * 60"><span class="n">{{ $index + 1 }}</span>{{ lang.l(w) }}</li>
+      }
+    </ul>
+  </div>
+</section>
+
+<app-cta-section />
+
+@if (start() !== null) {
+  <app-image-lightbox [items]="items()" [start]="start()!" (closed)="start.set(null)" />
+}

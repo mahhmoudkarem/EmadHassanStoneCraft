@@ -1,0 +1,19 @@
+<section class="cta">
+  <img src="/images/factory/1.jpg" alt="" class="cta-bg" loading="lazy" width="1600" height="1067" />
+  <div class="cta-shade"></div>
+  <div class="container-x cta-inner">
+    <span class="eyebrow cta-eyebrow" appReveal>{{ lang.l(ui.cta.eyebrow) }}</span>
+    <h2 class="cta-title" appReveal [revealDelay]="80">{{ lang.l(ui.cta.title) }}</h2>
+    <p class="cta-text" appReveal [revealDelay]="140">{{ lang.l(ui.cta.text) }}</p>
+    <div class="cta-actions" appReveal [revealDelay]="200">
+      <a routerLink="/contact" fragment="quote" class="btn btn-gold">
+        {{ lang.l(ui.common.requestQuote) }}
+        <fa-icon [icon]="faArrowRight" class="rtl-flip" />
+      </a>
+      <button type="button" class="btn btn-ghost-light" (click)="openWhatsapp()">
+        <fa-icon [icon]="faWhatsapp" />
+        {{ lang.l(ui.common.whatsapp) }}
+      </button>
+    </div>
+  </div>
+</section>

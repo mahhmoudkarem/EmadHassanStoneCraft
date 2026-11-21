@@ -1,0 +1,58 @@
+<app-page-hero
+  image="/images/factory/2.jpg"
+  [eyebrow]="lang.l(ui.about.eyebrow)"
+  [title]="lang.l(ui.about.pageTitle)"
+  [intro]="lang.l(ui.about.pageIntro)"
+  [crumbs]="[{ label: lang.l(ui.nav.about) }]"
+/>
+
+<section class="story">
+  <div class="container-x grid">
+    <div class="img" appReveal>
+      <img src="/images/factory/2.jpg" [alt]="lang.l(ui.about.imageAlt)" width="1280" height="960" loading="eager" />
+    </div>
+    <div>
+      <h2 class="sec-title" appReveal>{{ lang.l(ui.about.title) }}</h2>
+      <p class="p lead" appReveal [revealDelay]="80">{{ lang.l(ui.about.p1) }}</p>
+      <p class="p" appReveal [revealDelay]="120">{{ lang.l(ui.about.p2) }}</p>
+      <p class="p" appReveal [revealDelay]="160">{{ lang.l(ui.about.p3) }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="facts grain">
+  <div class="container-x">
+    <h2 class="sec-title" appReveal>{{ lang.l(ui.about.factsTitle) }}</h2>
+    <dl class="fl">
+      @for (f of ui.about.facts; track f.label.en) {
+        <div class="fr" appReveal>
+          <dt>{{ lang.l(f.label) }}</dt>
+          <dd>{{ lang.l(f.value) }}</dd>
+        </div>
+      }
+    </dl>
+  </div>
+</section>
+
+<section class="why">
+  <div class="container-x wgrid">
+    <div>
+      <span class="eyebrow" appReveal>{{ lang.l(ui.factory.eyebrow) }}</span>
+      <h2 class="sec-title mt-5" appReveal [revealDelay]="80">{{ lang.l(ui.about.whyTitle) }}</h2>
+      <a routerLink="/factory" class="btn btn-dark mt-8" appReveal [revealDelay]="140">
+        {{ lang.l(ui.factory.visit) }}
+        <fa-icon [icon]="faArrowRight" class="rtl-flip" />
+      </a>
+    </div>
+    <ul class="wl">
+      @for (w of why; track w.en) {
+        <li appReveal [revealDelay]="($index % 3) * 60">
+          <fa-icon [icon]="faCheck" class="ck" />
+          <span>{{ lang.l(w) }}</span>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<app-cta-section />

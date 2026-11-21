@@ -1,0 +1,34 @@
+<section class="ph bg-night">
+  <div class="container-x grid">
+    <div class="copy">
+      <nav class="crumbs" aria-label="breadcrumb">
+        <a routerLink="/">{{ lang.l(ui.common.home) }}</a>
+        @for (c of crumbs(); track c.label) {
+          <span class="sep" aria-hidden="true">/</span>
+          @if (c.link) {
+            <a [routerLink]="c.link">{{ c.label }}</a>
+          } @else {
+            <span aria-current="page">{{ c.label }}</span>
+          }
+        }
+      </nav>
+
+      @if (eyebrow()) {
+        <span class="eyebrow" appReveal>{{ eyebrow() }}</span>
+      }
+      <h1 class="ph-title gold-text" appReveal [revealDelay]="80">{{ title() }}</h1>
+      @if (intro()) {
+        <p class="ph-intro" appReveal [revealDelay]="160">{{ intro() }}</p>
+      }
+    </div>
+
+    @if (image()) {
+      <div class="pic" appReveal [revealDelay]="120">
+        <div class="arch-frame">
+          <img appParallax [speed]="0.04" [src]="image()" [alt]="imageAlt()" width="800" height="1000" fetchpriority="high" />
+        </div>
+        <span class="orn" aria-hidden="true"></span>
+      </div>
+    }
+  </div>
+</section>

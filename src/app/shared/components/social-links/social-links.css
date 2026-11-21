@@ -1,0 +1,85 @@
+:host {
+  display: block;
+}
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.s-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+.s-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  font-size: 16px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+.s-link:hover .s-icon {
+  transform: translateY(-2px);
+}
+
+/* على خلفية غامقة */
+:host(.tone-light) .s-link {
+  color: var(--color-stone);
+}
+:host(.tone-light) .s-icon {
+  border-color: rgba(201, 161, 91, 0.45);
+}
+:host(.tone-light) .s-link:hover .s-icon {
+  background: var(--color-stone);
+  border-color: var(--color-stone);
+  color: var(--color-char);
+}
+
+/* على خلفية فاتحة */
+:host(.tone-dark) .s-link {
+  color: var(--color-espresso);
+}
+:host(.tone-dark) .s-icon {
+  border-color: rgba(43, 30, 20, 0.25);
+  color: var(--color-gold);
+}
+:host(.tone-dark) .s-link:hover .s-icon {
+  background: var(--color-espresso);
+  border-color: var(--color-espresso);
+  color: var(--color-ivory);
+}
+
+/* نسخة بالأسماء (صفحة التواصل) */
+.with-labels {
+  display: grid;
+  gap: 14px;
+}
+.s-text {
+  display: grid;
+  line-height: 1.3;
+}
+.s-name {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 600;
+}
+.s-handle {
+  font-size: 13.5px;
+  color: var(--color-mute);
+  text-align: start;
+}
+:host-context([dir='rtl']) .s-handle {
+  text-align: right;
+}

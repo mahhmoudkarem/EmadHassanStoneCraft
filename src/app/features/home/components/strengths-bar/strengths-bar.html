@@ -1,0 +1,15 @@
+<section class="bar-wrap">
+  <div class="container-x">
+    <ul class="bar" appReveal>
+      @for (s of items; track s.title.en) {
+        <li class="cell">
+          <fa-icon [icon]="s.icon" class="ico" />
+          <div>
+            <strong>{{ lang.l(s.title) }}</strong>
+            <span>{{ lang.l(s.text) }}</span>
+          </div>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

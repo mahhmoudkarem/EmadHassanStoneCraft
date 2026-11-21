@@ -1,0 +1,61 @@
+<footer class="foot grain-dark">
+  <div class="container-x foot-grid">
+    <div class="foot-brand">
+      <a routerLink="/" class="foot-logo" [attr.aria-label]="lang.l(ui.brand.name)">
+        <img src="/images/logo/logo-mark-sm.webp" alt="" width="150" height="200" loading="lazy" />
+        <span class="fl-text">
+          <span class="fl-name">{{ lang.l(ui.brand.short) }}</span>
+          <span class="fl-tag">{{ lang.l(ui.brand.tagline) }}</span>
+        </span>
+      </a>
+      <p>{{ lang.l(ui.footer.about) }}</p>
+      <h3 class="foot-h follow">{{ lang.l(ui.footer.follow) }}</h3>
+      <app-social-links tone="light" />
+    </div>
+
+    <div>
+      <h3 class="foot-h">{{ lang.l(ui.footer.explore) }}</h3>
+      <ul>
+        @for (l of links; track l.path) {
+          <li><a [routerLink]="l.path">{{ lang.l(l.label) }}</a></li>
+        }
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="foot-h">{{ lang.l(ui.footer.collection) }}</h3>
+      <ul>
+        @for (p of products; track p.id) {
+          <li><a [routerLink]="['/products', p.slug]">{{ lang.l(p.name) }}</a></li>
+        }
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="foot-h">{{ lang.l(ui.footer.contact) }}</h3>
+      <ul class="contact-list">
+        @for (p of site.phones; track p.tel) {
+          <li>
+            <a [href]="'tel:' + p.tel" class="ph"><fa-icon [icon]="faPhone" /><span dir="ltr">{{ p.display }}</span></a>
+          </li>
+        }
+        <li>
+          <a [href]="'mailto:' + site.email"><fa-icon [icon]="faEnvelope" /><span dir="ltr">{{ site.email }}</span></a>
+        </li>
+        <li class="addr">
+          <a [href]="site.mapsUrl" target="_blank" rel="noopener noreferrer">
+            <fa-icon [icon]="faLocationDot" />
+            <span>{{ lang.l(ui.contact.addressValue) }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container-x">
+    <div class="foot-bottom">
+      <span>© {{ year }} {{ lang.l(ui.brand.name) }}. {{ lang.l(ui.footer.rights) }}</span>
+      <span class="descr">{{ lang.l(ui.brand.descriptor) }}</span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,34 @@
+<section class="apps bg-night">
+  <div class="arc" aria-hidden="true"></div>
+  <div class="container-x">
+    <header class="head">
+      <div>
+        <span class="eyebrow" appReveal>{{ lang.l(ui.projectsSec.eyebrow) }}</span>
+        <h2 class="title" appReveal [revealDelay]="80">{{ lang.l(ui.projectsSec.title) }}</h2>
+      </div>
+      <div class="side" appReveal [revealDelay]="140">
+        <p>{{ lang.l(ui.projectsSec.sub) }}</p>
+        <a routerLink="/projects" class="btn btn-gold">
+          {{ lang.l(ui.common.viewAll) }}
+          <fa-icon [icon]="faArrowRight" class="rtl-flip" />
+        </a>
+      </div>
+    </header>
+  </div>
+
+  <!-- جدار الأعمال: صفّان متحركان بعكس بعض داخل عقود معمارية -->
+  @for (row of rows; track $index) {
+    <div class="marquee wall" [class.rev]="$index === 1" [style.--dur]="$index === 0 ? '60s' : '75s'">
+      @for (k of [0, 1]; track k) {
+        <div class="marquee-track">
+          @for (p of row; track p.id) {
+            <a routerLink="/projects" class="arch-card" [attr.aria-label]="lang.l(p.title)" [attr.tabindex]="k === 0 ? 0 : -1">
+              <img [src]="p.image" [alt]="k === 0 ? lang.l(p.title) + ': ' + lang.l(p.caption) : ''" loading="eager" decoding="async" width="360" height="480" />
+              <span class="cap">{{ lang.l(p.title) }}</span>
+            </a>
+          }
+        </div>
+      }
+    </div>
+  }
+</section>

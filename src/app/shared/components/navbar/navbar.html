@@ -1,0 +1,97 @@
+<header class="nav-shell" [class.scrolled]="scrolled() || menuOpen()">
+  <div class="container-x nav-row">
+    <!-- Logo -->
+    <a routerLink="/" class="brand" (click)="closeMenu()" [attr.aria-label]="lang.l(ui.brand.name)">
+      <img src="/images/logo/logo-mark-sm.webp" alt="" width="150" height="200" class="brand-mark" fetchpriority="high" />
+      <span class="brand-text">
+        <span class="brand-name">{{ lang.l(ui.brand.short) }}</span>
+        <span class="brand-tag">{{ lang.l(ui.brand.tagline) }}</span>
+      </span>
+    </a>
+
+    <!-- Primary links (desktop) -->
+    <nav class="links" [attr.aria-label]="lang.l(ui.nav.primary)">
+      @for (link of links; track link.path) {
+        <a
+          [routerLink]="link.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: link.exact }"
+          class="nav-link"
+        >
+          {{ lang.l(link.label) }}
+        </a>
+      }
+    </nav>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button
+        type="button"
+        class="lang-btn"
+        (click)="toggleLanguage()"
+        [attr.aria-label]="lang.l(ui.nav.switchLang)"
+        [attr.lang]="lang.isArabic() ? 'en' : 'ar'"
+      >
+        <fa-icon [icon]="faGlobe" />
+        <span>{{ lang.l(ui.nav.langShort) }}</span>
+      </button>
+
+      <a [href]="'tel:' + site.phone" class="phone-pill" [attr.aria-label]="lang.l(ui.nav.callUs)">
+        <fa-icon [icon]="faPhone" />
+        <span class="phone-num" dir="ltr">{{ site.phoneDisplay }}</span>
+      </a>
+
+      <a routerLink="/contact" fragment="quote" class="btn btn-dark quote-btn">
+        {{ lang.l(ui.nav.quote) }}
+        <fa-icon [icon]="faArrowRight" class="rtl-flip" />
+      </a>
+
+      <button
+        type="button"
+        class="burger"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="menuOpen()"
+        aria-controls="mobile-menu"
+        [attr.aria-label]="menuOpen() ? lang.l(ui.nav.closeMenu) : lang.l(ui.nav.openMenu)"
+      >
+        <fa-icon [icon]="menuOpen() ? faXmark : faBars" />
+      </button>
+    </div>
+  </div>
+
+  <span class="progress" [style.transform]="'scaleX(' + progress() + ')'" aria-hidden="true"></span>
+
+  <!-- Mobile menu: drops down from the top bar -->
+  <div id="mobile-menu" class="mobile-panel" [class.open]="menuOpen()" [attr.aria-hidden]="!menuOpen()">
+    <nav class="container-x mobile-links" [attr.aria-label]="lang.l(ui.nav.primary)">
+      @for (link of links; track link.path; let i = $index) {
+        <a
+          [routerLink]="link.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: link.exact }"
+          class="m-link"
+          [style.transition-delay.ms]="menuOpen() ? 60 + i * 45 : 0"
+          [attr.tabindex]="menuOpen() ? 0 : -1"
+          (click)="closeMenu()"
+        >
+          <span class="m-num">0{{ i + 1 }}</span>
+          {{ lang.l(link.label) }}
+        </a>
+      }
+      <div class="m-actions">
+        <a [href]="'tel:' + site.phone" class="btn btn-line" [attr.tabindex]="menuOpen() ? 0 : -1">
+          <fa-icon [icon]="faPhone" />
+          <span dir="ltr">{{ site.phoneDisplay }}</span>
+        </a>
+        <a routerLink="/contact" fragment="quote" class="btn btn-dark" (click)="closeMenu()" [attr.tabindex]="menuOpen() ? 0 : -1">
+          {{ lang.l(ui.nav.quote) }}
+          <fa-icon [icon]="faArrowRight" class="rtl-flip" />
+        </a>
+        <div class="m-social">
+          <span class="m-social-l">{{ lang.l(ui.nav.follow) }}</span>
+          <app-social-links tone="dark" />
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,23 @@
+<section class="svc grain">
+  <div class="container-x grid">
+    <div class="intro">
+      <span class="eyebrow" appReveal>{{ lang.l(ui.services.eyebrow) }}</span>
+      <h2 class="sec-title mt-5" appReveal [revealDelay]="80">{{ lang.l(ui.services.title) }}</h2>
+      <p class="sec-lead mt-6" appReveal [revealDelay]="140">{{ lang.l(ui.services.sub) }}</p>
+      <a routerLink="/services" class="btn btn-line mt-8" appReveal [revealDelay]="200">
+        {{ lang.l(ui.common.discoverMore) }}
+        <fa-icon [icon]="faArrowRight" class="rtl-flip" />
+      </a>
+    </div>
+
+    <ol class="list">
+      @for (s of services; track s.id) {
+        <li class="row" appReveal [revealDelay]="($index % 4) * 60">
+          <span class="num">{{ s.id < 10 ? '0' + s.id : s.id }}</span>
+          <h3>{{ lang.l(s.title) }}</h3>
+          <p>{{ lang.l(s.text) }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>

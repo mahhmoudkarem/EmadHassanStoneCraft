@@ -1,0 +1,21 @@
+<app-page-hero
+  image="/images/factory/5.jpg"
+  [eyebrow]="lang.l(ui.services.eyebrow)"
+  [title]="lang.l(ui.services.pageTitle)"
+  [intro]="lang.l(ui.services.sub)"
+  [crumbs]="[{ label: lang.l(ui.nav.services) }]"
+/>
+
+<section class="sv">
+  <div class="container-x grid">
+    @for (s of services; track s.id) {
+      <article class="card" appReveal [revealDelay]="($index % 2) * 90">
+        <span class="n">{{ s.id < 10 ? '0' + s.id : s.id }}</span>
+        <h2>{{ lang.l(s.title) }}</h2>
+        <p>{{ lang.l(s.text) }}</p>
+      </article>
+    }
+  </div>
+</section>
+
+<app-cta-section />

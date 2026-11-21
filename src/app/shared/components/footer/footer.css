@@ -1,0 +1,126 @@
+:host {
+  display: block;
+}
+.foot {
+  background: var(--color-char);
+  color: rgba(248, 243, 233, 0.72);
+  padding-top: clamp(56px, 8vw, 96px);
+}
+.foot-grid {
+  display: grid;
+  gap: 44px;
+  grid-template-columns: 1fr;
+  padding-bottom: 56px;
+}
+@media (min-width: 640px) {
+  .foot-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 1024px) {
+  .foot-grid {
+    grid-template-columns: 1.5fr 0.8fr 1.1fr 1.3fr;
+  }
+}
+.foot-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.foot-logo img {
+  width: auto;
+  height: 58px;
+}
+.fl-text {
+  display: grid;
+  line-height: 1.1;
+}
+.fl-name {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  color: var(--color-ivory);
+}
+.fl-tag {
+  margin-top: 4px;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  color: var(--color-stone);
+}
+:host-context(html[lang='ar']) .fl-name {
+  font-family: 'Amiri', serif;
+  font-size: 27px;
+}
+:host-context(html[lang='ar']) .fl-tag {
+  font-family: 'Cairo', sans-serif;
+  font-size: 12px;
+  letter-spacing: normal;
+}
+.foot-h.follow {
+  margin: 28px 0 14px;
+}
+.foot-brand p {
+  max-width: 36ch;
+  font-size: 15px;
+  line-height: 1.8;
+}
+.foot-h {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-stone);
+  margin-bottom: 20px;
+}
+:host-context(html[lang='ar']) .foot-h {
+  font-family: 'Cairo', sans-serif;
+  letter-spacing: normal;
+  font-size: 15px;
+  text-transform: none;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 11px;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 15px;
+  transition: color 0.25s ease;
+}
+a:hover {
+  color: var(--color-stone);
+}
+.contact-list a {
+  display: inline-flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.contact-list fa-icon {
+  flex: none;
+  width: 16px;
+  color: var(--color-stone);
+  margin-top: 4px;
+}
+.foot-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  justify-content: space-between;
+  padding-block: 24px;
+  border-top: 1px solid rgba(248, 243, 233, 0.12);
+  font-size: 13px;
+  color: rgba(248, 243, 233, 0.5);
+}
+@media (max-width: 639px) {
+  /* مساحة لزر واتساب العائم عشان ما يغطيش آخر سطر */
+  .foot-bottom {
+    padding-bottom: 96px;
+  }
+}

@@ -1,0 +1,9 @@
+:host {
+  display: block;
+}
+main {
+  display: block;
+  /* ارتفاع الناف بار الثابت */
+  padding-top: 76px;
+  min-height: 100vh;
+}

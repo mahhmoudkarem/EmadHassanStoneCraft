@@ -1,0 +1,23 @@
+.wa {
+  position: fixed;
+  inset-block-end: 22px;
+  inset-inline-end: 22px;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  font-size: 28px;
+  color: #fff;
+  background: #1f9d55;
+  border: 0;
+  border-radius: 50%;
+  box-shadow: 0 12px 28px rgba(31, 157, 85, 0.35);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.wa:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 16px 34px rgba(31, 157, 85, 0.45);
+}

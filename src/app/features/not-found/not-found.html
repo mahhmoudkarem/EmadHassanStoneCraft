@@ -1,0 +1,14 @@
+<section class="nf bg-stone-wash grain">
+  <div class="container-x inner">
+    <span class="code" aria-hidden="true">404</span>
+    <h1>{{ lang.l(ui.notFound.title) }}</h1>
+    <p>{{ lang.l(ui.notFound.text) }}</p>
+    <div class="actions">
+      <a routerLink="/" class="btn btn-dark">
+        {{ lang.l(ui.common.home) }}
+        <fa-icon [icon]="faArrowRight" class="rtl-flip" />
+      </a>
+      <a routerLink="/products" class="btn btn-line">{{ lang.l(ui.common.exploreProducts) }}</a>
+    </div>
+  </div>
+</section>

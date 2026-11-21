@@ -1,0 +1,55 @@
+<section class="hero bg-night" aria-labelledby="hero-title">
+  <!-- الصورة المعمارية بملء الشاشة -->
+  <div class="bg">
+    <img
+      appParallax
+      [speed]="0.05"
+      src="/images/hero/hero.jpg"
+      [alt]="lang.l(ui.hero.alt)"
+      width="1280"
+      height="820"
+      fetchpriority="high"
+    />
+    <div class="shade"></div>
+    <div class="vignette"></div>
+  </div>
+
+  <div class="container-x content">
+    <div class="copy">
+      <span class="eyebrow in1">{{ lang.l(ui.hero.eyebrow) }}</span>
+
+      <h1 id="hero-title" class="title in2">
+        <span class="line">{{ lang.l(ui.hero.titleA) }}</span>
+        <span class="line gold-text">{{ lang.l(ui.hero.titleB) }}</span>
+      </h1>
+
+      <p class="sub in3">{{ lang.l(ui.hero.subtitle) }}</p>
+      <p class="text in3">{{ lang.l(ui.hero.text) }}</p>
+
+      <div class="cta in4">
+        <a routerLink="/products" class="btn btn-gold">
+          {{ lang.l(ui.common.exploreProducts) }}
+          <fa-icon [icon]="faArrowRight" class="rtl-flip" />
+        </a>
+        <button type="button" class="btn btn-ghost-light" (click)="openWhatsapp()">
+          <fa-icon [icon]="faWhatsapp" />
+          {{ lang.l(ui.common.contactUs) }}
+        </button>
+      </div>
+    </div>
+
+    <!-- كروت عائمة على شكل عقد معماري -->
+    <div class="floats in5" aria-hidden="true">
+      <div class="fc f1"><img src="/images/products/capitals/1.jpg" alt="" width="400" height="520" /></div>
+      <div class="fc f2"><img src="/images/products/lanterns/1.jpg" alt="" width="400" height="520" /></div>
+    </div>
+
+    <!-- ختم دوار -->
+    <div class="seal in5" aria-hidden="true">
+      <span class="ring"></span>
+      <span class="n">25+</span>
+      <span class="l">{{ lang.l(ui.hero.badgeText) }}</span>
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,37 @@
+<section class="fac">
+  <div class="container-x grid">
+    <div class="copy">
+      <span class="eyebrow" appReveal>{{ lang.l(ui.factory.eyebrow) }}</span>
+      <h2 class="title" appReveal [revealDelay]="80">{{ lang.l(ui.factory.title) }}</h2>
+      <p class="text" appReveal [revealDelay]="140">{{ lang.l(ui.factory.text) }}</p>
+
+      <dl class="machines" appReveal [revealDelay]="200">
+        <div>
+          <dt>{{ lang.l(ui.factory.profileTitle) }}</dt>
+          <dd>{{ lang.l(ui.factory.profileText) }}</dd>
+        </div>
+        <div>
+          <dt>{{ lang.l(ui.factory.cuttingTitle) }}</dt>
+          <dd>{{ lang.l(ui.factory.cuttingText) }}</dd>
+        </div>
+      </dl>
+
+      <a routerLink="/factory" class="btn btn-gold" appReveal [revealDelay]="260">
+        {{ lang.l(ui.factory.visit) }}
+        <fa-icon [icon]="faArrowRight" class="rtl-flip" />
+      </a>
+    </div>
+
+    <div class="collage">
+      <div class="a" appReveal>
+        <img src="/images/factory/3.jpg" [alt]="lang.l(ui.factory.alts[2])" loading="lazy" width="1280" height="960" />
+      </div>
+      <div class="b" appReveal [revealDelay]="150">
+        <img src="/images/factory/5.jpg" [alt]="lang.l(ui.factory.alts[4])" loading="lazy" width="1280" height="960" />
+      </div>
+      <div class="c" appReveal [revealDelay]="300">
+        <img src="/images/factory/2.jpg" [alt]="lang.l(ui.factory.alts[1])" loading="lazy" width="1280" height="960" />
+      </div>
+    </div>
+  </div>
+</section>

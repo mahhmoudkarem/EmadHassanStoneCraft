@@ -1,0 +1,32 @@
+<app-page-hero
+  image="/images/projects/1.jpg"
+  [eyebrow]="lang.l(ui.projectsSec.eyebrow)"
+  [title]="lang.l(ui.projectsSec.pageTitle)"
+  [intro]="lang.l(ui.projectsSec.pageIntro)"
+  [crumbs]="[{ label: lang.l(ui.nav.projects) }]"
+/>
+
+<section class="gal">
+  <div class="container-x">
+    <div class="masonry">
+      @for (p of projects; track p.id; let i = $index) {
+        <figure class="fig" appReveal [revealDelay]="($index % 3) * 80">
+          <button type="button" (click)="start.set(i)" [attr.aria-label]="lang.l(ui.common.zoom) + ': ' + lang.l(p.title)">
+            <img [src]="p.image" [alt]="lang.l(p.title) + ': ' + lang.l(p.caption)" [attr.loading]="i < 2 ? 'eager' : 'lazy'" width="900" height="1100" />
+          </button>
+          <figcaption>
+            <b>{{ lang.l(p.title) }}</b>
+            <span>{{ lang.l(p.caption) }}</span>
+          </figcaption>
+        </figure>
+      }
+    </div>
+    <p class="note">{{ lang.l(ui.projectsSec.note) }}</p>
+  </div>
+</section>
+
+<app-cta-section />
+
+@if (start() !== null) {
+  <app-image-lightbox [items]="items()" [start]="start()!" (closed)="start.set(null)" />
+}

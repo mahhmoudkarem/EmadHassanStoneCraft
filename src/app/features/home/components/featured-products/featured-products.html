@@ -1,0 +1,34 @@
+<section class="idx grain">
+  <div class="container-x">
+    <header class="head">
+      <div>
+        <span class="eyebrow" appReveal>{{ lang.l(ui.products.eyebrow) }}</span>
+        <h2 class="sec-title mt-5" appReveal [revealDelay]="80">{{ lang.l(ui.products.title) }}</h2>
+      </div>
+      <p class="sec-lead" appReveal [revealDelay]="140">{{ lang.l(ui.products.sub) }}</p>
+    </header>
+
+    <ol class="list" (mouseleave)="active.set(null)">
+      @for (p of products; track p.id; let i = $index) {
+        <li class="row" [class.dim]="active() !== null && active() !== i" (mouseenter)="active.set(i)" appReveal [revealDelay]="($index % 3) * 60">
+          <a [routerLink]="['/products', p.slug]" [attr.aria-label]="lang.l(p.name)">
+            <span class="n">{{ num(i) }}</span>
+            <span class="name">{{ lang.l(p.name) }}</span>
+            <span class="tag">{{ lang.l(p.tagline) }}</span>
+            <span class="thumb"><img [src]="p.cover" alt="" loading="lazy" decoding="async" width="200" height="260" /></span>
+            <fa-icon [icon]="faArrowRight" class="go rtl-flip" />
+          </a>
+        </li>
+      }
+    </ol>
+  </div>
+
+  <!-- معاينة تتبع المؤشر (ديسكتوب فقط) -->
+  <div class="preview" [class.show]="active() !== null" [style.left.px]="x()" [style.top.px]="y()" aria-hidden="true">
+    <div class="pv-arch">
+      @for (p of products; track p.id; let i = $index) {
+        <img [src]="p.cover" alt="" [class.on]="active() === i" decoding="async" />
+      }
+    </div>
+  </div>
+</section>

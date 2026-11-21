@@ -1,0 +1,48 @@
+<app-page-hero
+  image="/images/products/columns/1.jpg"
+  [eyebrow]="lang.l(ui.products.eyebrow)"
+  [title]="lang.l(ui.products.pageTitle)"
+  [intro]="lang.l(ui.products.pageIntro)"
+  [crumbs]="[{ label: lang.l(ui.nav.products) }]"
+/>
+
+<section class="list">
+  <div class="container-x">
+    @for (p of products; track p.id; let i = $index) {
+      <article class="item" [class.flip]="i % 2 === 1">
+        <a [routerLink]="['/products', p.slug]" class="photo" [attr.aria-label]="lang.l(p.name)">
+          <div class="frame" [class.arch]="i % 3 === 0" appReveal>
+            <img
+              [src]="p.cover"
+              [alt]="lang.l(p.name) + ' - ' + lang.l(p.alt)"
+              [attr.loading]="i < 2 ? 'eager' : 'lazy'"
+              width="900"
+              height="1100"
+            />
+          </div>
+          @if (p.images.length > 1) {
+            <span class="count">{{ p.images.length }} {{ lang.l(ui.products.photos) }}</span>
+          }
+        </a>
+
+        <div class="info" appReveal [revealDelay]="120">
+          <span class="num">{{ num(i) }} / {{ num(products.length - 1) }}</span>
+          <h2>{{ lang.l(p.name) }}</h2>
+          <p class="tag">{{ lang.l(p.tagline) }}</p>
+          <p class="desc">{{ lang.l(p.description) }}</p>
+          <ul class="apps" [attr.aria-label]="lang.l(ui.products.applications)">
+            @for (a of p.applications; track a.en) {
+              <li>{{ lang.l(a) }}</li>
+            }
+          </ul>
+          <a [routerLink]="['/products', p.slug]" class="btn btn-line">
+            {{ lang.l(ui.common.viewDetails) }}
+            <fa-icon [icon]="faArrowRight" class="rtl-flip" />
+          </a>
+        </div>
+      </article>
+    }
+  </div>
+</section>
+
+<app-cta-section />

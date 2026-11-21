@@ -1,0 +1,28 @@
+<section class="about bg-stone-wash grain">
+  <span class="giant" aria-hidden="true">25+</span>
+  <div class="container-x grid">
+    <div class="media">
+      <div class="big" appReveal>
+        <img src="/images/factory/1.jpg" [alt]="lang.l(ui.about.imageAlt)" loading="lazy" width="1600" height="1067" />
+      </div>
+      <div class="small arch" appReveal [revealDelay]="200">
+        <img src="/images/products/capitals/1.jpg" [alt]="lang.l(ui.products.about)" loading="lazy" width="600" height="800" />
+      </div>
+      <div class="years" appReveal [revealDelay]="350">
+        <span class="n">{{ lang.l(ui.hero.badgeNumber) }}</span>
+        <span class="l">{{ lang.l(ui.common.years) }}</span>
+      </div>
+    </div>
+
+    <div class="copy">
+      <span class="eyebrow" appReveal>{{ lang.l(ui.about.eyebrow) }}</span>
+      <h2 class="sec-title mt-5" appReveal [revealDelay]="80">{{ lang.l(ui.about.title) }}</h2>
+      <p class="lead" appReveal [revealDelay]="140">{{ lang.l(ui.about.p1) }}</p>
+      <p class="body" appReveal [revealDelay]="200">{{ lang.l(ui.about.p2) }}</p>
+      <a routerLink="/about" class="btn btn-dark mt-8" appReveal [revealDelay]="260">
+        {{ lang.l(ui.about.more) }}
+        <fa-icon [icon]="faArrowRight" class="rtl-flip" />
+      </a>
+    </div>
+  </div>
+</section>

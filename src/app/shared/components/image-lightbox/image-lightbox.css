@@ -1,0 +1,72 @@
+.lb {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 56px 16px 32px;
+  background: rgba(20, 15, 10, 0.93);
+  animation: lbIn 0.3s ease;
+}
+@keyframes lbIn {
+  from {
+    opacity: 0;
+  }
+}
+.lb-fig {
+  margin: 0;
+  max-width: min(1200px, 100%);
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+}
+.lb-fig img {
+  max-height: calc(100vh - 150px);
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+figcaption {
+  color: rgba(248, 243, 233, 0.85);
+  font-size: 15px;
+  text-align: center;
+}
+.lb-count {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: rgba(248, 243, 233, 0.5);
+}
+.lb-close,
+.lb-nav {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  color: #f8f3e9;
+  font-size: 18px;
+  background: rgba(248, 243, 233, 0.1);
+  border: 1px solid rgba(248, 243, 233, 0.25);
+  border-radius: 50%;
+  transition: background 0.25s ease;
+}
+.lb-close:hover,
+.lb-nav:hover {
+  background: rgba(201, 161, 91, 0.55);
+}
+.lb-close {
+  top: 16px;
+  inset-inline-end: 16px;
+}
+.lb-nav {
+  top: 50%;
+  translate: 0 -50%;
+}
+.lb-nav.prev {
+  inset-inline-start: 12px;
+}
+.lb-nav.next {
+  inset-inline-end: 12px;
+}

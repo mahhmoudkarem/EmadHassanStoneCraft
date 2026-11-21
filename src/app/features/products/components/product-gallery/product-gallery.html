@@ -1,0 +1,18 @@
+<div class="gal">
+  <button type="button" class="main" (click)="opened.emit(active())" [attr.aria-label]="lang.l(ui.common.zoom)">
+    <img [src]="current()" [alt]="alt()" width="1000" height="1200" fetchpriority="high" />
+    <span class="zoom"><fa-icon [icon]="faExpand" /></span>
+  </button>
+
+  @if (images().length > 1) {
+    <ul class="thumbs">
+      @for (img of images(); track img; let i = $index) {
+        <li>
+          <button type="button" [class.on]="i === active()" (click)="select(i)" [attr.aria-label]="alt() + ' ' + (i + 1)" [attr.aria-current]="i === active()">
+            <img [src]="img" alt="" loading="lazy" width="160" height="160" />
+          </button>
+        </li>
+      }
+    </ul>
+  }
+</div>

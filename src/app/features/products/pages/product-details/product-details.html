@@ -1,0 +1,73 @@
+@if (product(); as p) {
+  <section class="pd grain bg-stone-wash">
+    <div class="container-x">
+      <nav class="crumbs" aria-label="breadcrumb">
+        <a routerLink="/">{{ lang.l(ui.common.home) }}</a>
+        <span aria-hidden="true">/</span>
+        <a routerLink="/products">{{ lang.l(ui.nav.products) }}</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{{ lang.l(p.name) }}</span>
+      </nav>
+
+      <div class="grid">
+        <app-product-gallery
+          [images]="p.images"
+          [alt]="lang.l(p.name) + ' - ' + lang.l(p.alt)"
+          (opened)="lightboxStart.set($event)"
+        />
+
+        <div class="info">
+          <span class="eyebrow" appReveal>{{ lang.l(ui.products.eyebrow) }}</span>
+          <h1 appReveal [revealDelay]="80">{{ lang.l(p.name) }}</h1>
+          <p class="tag" appReveal [revealDelay]="120">{{ lang.l(p.tagline) }}</p>
+
+          <h2 class="lbl">{{ lang.l(ui.products.about) }}</h2>
+          <p class="desc">{{ lang.l(p.description) }}</p>
+
+          <h2 class="lbl">{{ lang.l(ui.products.applications) }}</h2>
+          <ul class="apps">
+            @for (a of p.applications; track a.en) {
+              <li>{{ lang.l(a) }}</li>
+            }
+          </ul>
+
+          <p class="note">{{ lang.l(ui.products.madeToOrder) }}</p>
+
+          <div class="actions">
+            <button type="button" class="btn btn-dark" (click)="inquire()">
+              <fa-icon [icon]="faWhatsapp" />
+              {{ lang.l(ui.common.inquireWhatsapp) }}
+            </button>
+            <a routerLink="/contact" fragment="quote" class="btn btn-line">
+              {{ lang.l(ui.common.requestQuote) }}
+              <fa-icon [icon]="faArrowRight" class="rtl-flip" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="more">
+    <div class="container-x">
+      <h2 class="sec-title">{{ lang.l(ui.products.related) }}</h2>
+      <div class="rel">
+        @for (r of related(); track r.id) {
+          <a [routerLink]="['/products', r.slug]" class="rc" appReveal [revealDelay]="$index * 90">
+            <div class="rf"><img [src]="r.cover" [alt]="lang.l(r.name)" loading="lazy" width="600" height="700" /></div>
+            <h3>{{ lang.l(r.name) }}</h3>
+            <p>{{ lang.l(r.tagline) }}</p>
+          </a>
+        }
+      </div>
+    </div>
+  </section>
+
+  <app-cta-section />
+
+  @if (lightboxStart() !== null) {
+    <app-image-lightbox [items]="lightboxItems()" [start]="lightboxStart()!" (closed)="lightboxStart.set(null)" />
+  }
+} @else {
+  <app-not-found />
+}
